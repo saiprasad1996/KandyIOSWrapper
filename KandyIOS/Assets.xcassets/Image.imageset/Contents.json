@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "kandy_developers_logo-c410f025bd2daedca2a70204a657dcb088c9ba18d1247a617d9d25898dfc88ec.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "kandy_developers_logo-c410f025bd2daedca2a70204a657dcb088c9ba18d1247a617d9d25898dfc88ec-1.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "kandy_developers_logo-c410f025bd2daedca2a70204a657dcb088c9ba18d1247a617d9d25898dfc88ec-2.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

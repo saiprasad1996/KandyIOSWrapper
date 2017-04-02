@@ -33,7 +33,7 @@ func sendSMS(domain_api_key:String,domain_secret:String,user_id:String,source:St
     
     var smsStatus:String="";
    //Http Request using Alamofire Library (Swift)
-    Alamofire.request(smsURL, method:.post,parameters:parameters,encoding:JSONEncoding.default)
+    Alamofire.request(smsURL, method:.post,parameters:parameters,encoding:JSONEncoding.default,headers:headers)
         .responseJSON{
             response in
             switch response.result{
@@ -55,9 +55,13 @@ func sendSMS(domain_api_key:String,domain_secret:String,user_id:String,source:St
 
 //Requesting the user access token
 func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:String) -> String{
+    
+    //URL string for the HTTP Request
     let url = "https://api.kandy.io/v1.2/domains/users/accesstokens?key=" + domain_api_key
     + "&domain_api_secret=" + domain_secret + "&user_id=" + user_id;
     var json_:JSON = JSON.null
+    
+    //Request Building and reponse handling
     Alamofire.request(url,method:.get).responseJSON{
         response in
         switch response.result{
@@ -77,8 +81,12 @@ func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:Strin
 }
 //Get the device ID using the user access token
 func getDeviceId(user_access_token:String)-> String{
+    
+    //URL string for the HTTP Request
     let url="https://api.kandy.io/v1.2/users/devices?key=" + user_access_token
     var json_:JSON = JSON.null
+    
+    //Request Building and response handling
     Alamofire.request(url,method:.get).responseJSON{
         response in
         switch response.result{
@@ -96,6 +104,8 @@ func getDeviceId(user_access_token:String)-> String{
     
     return json_["result"]["devices"][0]["device_id"].stringValue
 }
+
+//Check the parameters for valid strings
 func check_init_error(domain_api_key:String,domain_secret:String,user_id:String) -> Bool{
     if domain_api_key.isEmpty {return false}
     if domain_secret.isEmpty{return false}

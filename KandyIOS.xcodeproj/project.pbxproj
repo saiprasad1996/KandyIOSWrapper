@@ -13,6 +13,7 @@
 		2343055A1E8B9487001FB288 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 234305581E8B9487001FB288 /* Main.storyboard */; };
 		2343055C1E8B9487001FB288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2343055B1E8B9487001FB288 /* Assets.xcassets */; };
 		2343055F1E8B9487001FB288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2343055D1E8B9487001FB288 /* LaunchScreen.storyboard */; };
+		23D4E4691E901FD100E3C19D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D4E4681E901FD100E3C19D /* SwiftyJSON.swift */; };
 		23D624AB1E8C3FDC00656AAA /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 23D624AA1E8C3FDC00656AAA /* Source */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		2343055B1E8B9487001FB288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2343055E1E8B9487001FB288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		234305601E8B9487001FB288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23D4E4681E901FD100E3C19D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		23D624A71E8C3FDC00656AAA /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Alamofire.xcodeproj; sourceTree = "<group>"; };
 		23D624AA1E8C3FDC00656AAA /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 				2343055D1E8B9487001FB288 /* LaunchScreen.storyboard */,
 				234305601E8B9487001FB288 /* Info.plist */,
 				233C22A91E8E258800321D55 /* KandyLib.swift */,
+				23D4E4681E901FD100E3C19D /* SwiftyJSON.swift */,
 			);
 			path = KandyIOS;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				234305571E8B9487001FB288 /* ViewController.swift in Sources */,
 				234305551E8B9487001FB288 /* AppDelegate.swift in Sources */,
 				233C22AA1E8E258800321D55 /* KandyLib.swift in Sources */,
+				23D4E4691E901FD100E3C19D /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

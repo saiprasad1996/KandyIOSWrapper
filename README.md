@@ -32,9 +32,9 @@ The function returns the JSON response as string(which is done deliberately) and
 ## Demo
 
 ### Deploying the library using the KandyLib
-[Xcode output with Simulator](https://github.com/saiprasad1996/KandyIOSWrapper/blob/master/xcode_ios.png)
+![Xcode output with Simulator](https://raw.githubusercontent.com/saiprasad1996/KandyIOSWrapper/master/xcode_ios.png)
 
 ### Simulator output
-[iPhone Simulator Output](https://github.com/saiprasad1996/KandyIOSWrapper/blob/master/simulator.png)
+![iPhone Simulator Output](https://github.com/saiprasad1996/KandyIOSWrapper/blob/master/simulator.png)
 
 *TBN : This project is released under MIT license. A copy of the license can be found in the project.*

@@ -2,12 +2,12 @@
 **This project is a library for the IOS which is a wrapper around Kandy REST API for Collaborizm Hackathon.**
 
 
-## Our Team : 
-(Sai Prasad)[https://github.com/saiprasad1996], (Harsha Alva)[https://github.com/aharshac], (Ranjan Dailata)[https://github.com/ranjancse26]
+## Our Team :
+[Sai Prasad](https://github.com/saiprasad1996), [Harsha Alva](https://github.com/aharshac), [Ranjan Dailata](https://github.com/ranjancse26)
 
 ### Library dependencies for running this library
-- (Alamofire)[https://github.com/Alamofire/Alamofire]
-- (SwiftyJSON)[https://github.com/SwiftyJSON/SwiftyJSON]
+- [Alamofire](https://github.com/Alamofire/Alamofire)
+- [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
 
 ### Installation
 * First install Alamofire to the project (use the link above to get the project files) by dragging the Alamofire.xcodeproj and Source folder to the project navigation

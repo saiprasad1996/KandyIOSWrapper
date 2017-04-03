@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  KandyIOS
-//
-//  Created by SAI PRASAD on 29/03/17.
-//  Copyright © 2017 SAI PRASAD. All rights reserved.
-//
+
 
 import UIKit
 import Alamofire
@@ -22,8 +16,12 @@ class ViewController: UIViewController {
         let message = userMessage.text
         messageResponse.text = message
         userMessage.resignFirstResponder()
-        print("Message Sent \(message)")
+        let json_response = sendSMS(domain_api_key: "Your api key", domain_secret: "Your Domain secret", user_id: "Your userId", source: "Source", destination: "Destination", message: "Your Message here")
         
+        print("Message Sent \(message)")
+        print("Response Json : \(json_response)")
+        
+        messageResponse.text = "You've just sent : \(message)"
         
         
     }

@@ -13,7 +13,7 @@
 * First install Alamofire to the project (use the link above to get the project files) by dragging the Alamofire.xcodeproj and Source folder to the project navigation
 * Then remove test targets by clicking on the Alamofire.xcodeproj in the project navigation of XCode and delete test targets from the targets, then build Alamofire project by selecting Alamofire and target as IOS on the top navigation and click on run button  
 * Next copy the SwiftyJSON.swift file from the SwiftyJSON repo (use the link above) to the project navigation
-* Finally copy the **KandyLib.swift** file from this project
+* Finally copy the **KandyLib.swift** file from this project to the project Navigator
 * Now you can start using the KandyIOS library in your project to send sms
 
 ### Usage

@@ -29,4 +29,12 @@ The parameter from the above function can be found at the Kandy Developer Accoun
 
 The function returns the JSON response as string(which is done deliberately) and its upon the developer how he/she intends to use the JSON string.
 
+## Demo
+
+### Deploying the library using the KandyLib
+[Xcode output with Simulator](https://github.com/saiprasad1996/KandyIOSWrapper/blob/master/xcode_ios.png)
+
+### Simulator output
+[iPhone Simulator Output](https://github.com/saiprasad1996/KandyIOSWrapper/blob/master/simulator.png)
+
 *TBN : This project is released under MIT license. A copy of the license can be found in the project.*

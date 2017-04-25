@@ -16,13 +16,13 @@ class ViewController: UIViewController {
         let message = userMessage.text
         messageResponse.text = message
         userMessage.resignFirstResponder()
-        let json_response = sendSMS(domain_api_key: "Your api key", domain_secret: "Your Domain secret", user_id: "Your userId", source: "Source", destination: "Destination", message: "Your Message here")
+        let json_response = sendSMS(domain_api_key: "", domain_secret: "", user_id: "user1", source: "", destination: "", message: "Hello From Kandy")
         
         print("Message Sent \(message)")
         print("Response Json : \(json_response)")
         
         messageResponse.text = "You've just sent : \(message)"
-        
+        getDeviceId(user_access_token:"")
         
     }
     

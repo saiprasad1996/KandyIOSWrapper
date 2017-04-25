@@ -53,7 +53,7 @@ func sendSMS(domain_api_key:String,domain_secret:String,user_id:String,source:St
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
-                print("JSON : \(json)")
+                print("Send SMS Response : \(json)")
                 smsStatus = json.stringValue
                 break
             case .failure(let value):
@@ -82,7 +82,7 @@ func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:Strin
         case .success(let value):
             let json=JSON(value)
             json_=json
-            print("JSON : \(json)")
+            print("User Access Token Fetch : \(json)")
             break
         case .failure(let error):
             json_=JSON.null
@@ -107,7 +107,7 @@ func getDeviceId(user_access_token:String)-> String{
         case .success(let value):
             let json=JSON(value)
             json_=json
-            print("JSON : \(json)")
+            print("DeviceID Fetching : \(json)")
             break
         case .failure(let error):
             json_=JSON.null
@@ -116,7 +116,7 @@ func getDeviceId(user_access_token:String)-> String{
         }
     }
     
-    return json_["result"]["devices"][0]["device_id"].stringValue
+    return json_["result"]["devices"][0]["id"].stringValue
 }
 
 //Check the parameters for valid strings

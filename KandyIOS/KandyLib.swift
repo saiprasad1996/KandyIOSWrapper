@@ -20,55 +20,19 @@ let headers:HTTPHeaders=[
     "Accept":"application/json"
 ]
 
-func sendSMS(domain_api_key:String,domain_secret:String,user_id:String,source:String,destination:String,message:String) -> String{
+func sendSMS(domain_api_key:String,domain_secret:String,user_id:String,source:String,destination:String,message:String){
     
-    //Check if the parameters given are valid or not
-    if(check_init_error(domain_api_key: domain_api_key, domain_secret: domain_secret, user_id: user_id)){}
+    //This library is modified to work around with the asynchronous problem by Alamofire lib, 
+    //that executes multiple requests at a time such that the dependent request response could be used in the consequent request
+    getUserAccessToken(domain_api_key: domain_api_key, domain_secret: domain_secret, user_id: user_id, source: source, destination: destination, message: message)
     
-    //Get the user accesstoken using domain_api_key and domain_secret from the Kandy User account
-    let userAccesstoken = getUserAccessToken(domain_api_key: domain_api_key, domain_secret: domain_secret, user_id: user_id)
-    
-    //Get the device_id using the user_access_token fetched from the previous function
-    let deviceId = getDeviceId(user_access_token: userAccesstoken)
-    
-    //URL for sending sms to the deviceID
-    let smsURL="https://api.kandy.io/v1.2/devices/smss?key=" + userAccesstoken + "&device_id=" + deviceId;
-
-    //Constructing JSON body to send via the post request
-    let parameters: Parameters = [
-        "message":[
-            "source":"\(source)",
-            "destination":"\(destination)",
-            "message":[
-                "text":"\(message)"
-            ]
-        ]
-    ]
-    
-    var smsStatus:String="";
-   //Http Request using Alamofire Library (Swift)
-    Alamofire.request(smsURL, method:.post,parameters:parameters,encoding:JSONEncoding.default,headers:headers)
-        .responseJSON{
-            response in
-            switch response.result{
-            case .success(let value):
-                let json = JSON(value)
-                print("Send SMS Response : \(json)")
-                smsStatus = json.stringValue
-                break
-            case .failure(let value):
-                smsStatus = "{\"status\":\"failed\"}"
-                break
-            }
-    }
-    return smsStatus //JSON String response
     
 }
 
 
 
 //Requesting the user access token
-func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:String) -> String{
+func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:String,source:String,destination:String,message:String) -> String{
     
     //URL string for the HTTP Request
     let url = "https://api.kandy.io/v1.2/domains/users/accesstokens?key=" + domain_api_key
@@ -83,6 +47,10 @@ func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:Strin
             let json=JSON(value)
             json_=json
             print("User Access Token Fetch : \(json)")
+            let acc_token = json_["result"]["user_access_token"].stringValue
+            //Get device Id
+            getDeviceId(user_access_token: acc_token,domain_api_key:domain_api_key,domain_secret:domain_secret,user_id:user_id,source:source,destination:destination,message:message)
+            
             break
         case .failure(let error):
             json_=JSON.null
@@ -94,7 +62,7 @@ func getUserAccessToken(domain_api_key:String,domain_secret:String,user_id:Strin
     return json_["result"]["user_access_token"].stringValue
 }
 //Get the device ID using the user access token
-func getDeviceId(user_access_token:String)-> String{
+func getDeviceId(user_access_token:String,domain_api_key:String,domain_secret:String,user_id:String,source:String,destination:String,message:String)-> String{
     
     //URL string for the HTTP Request
     let url="https://api.kandy.io/v1.2/users/devices?key=" + user_access_token
@@ -108,9 +76,12 @@ func getDeviceId(user_access_token:String)-> String{
             let json=JSON(value)
             json_=json
             print("DeviceID Fetching : \(json)")
+            let device_id = json["result"]["devices"][0]["id"].stringValue
+            //Send the sms from the lib
+            print(sendMsg(domain_api_key: domain_api_key, domain_secret: domain_secret, user_id: user_id, source: source, destination: destination, message: message, userAccesstoken: user_access_token, deviceId: device_id))
             break
         case .failure(let error):
-            json_=JSON.null
+            json_=""
             print(error)
             break
         }
@@ -119,6 +90,43 @@ func getDeviceId(user_access_token:String)-> String{
     return json_["result"]["devices"][0]["id"].stringValue
 }
 
+
+func sendMsg(domain_api_key:String,domain_secret:String,user_id:String,source:String,destination:String,message:String,userAccesstoken:String,deviceId:String) -> String{
+    
+    //URL for sending sms to the deviceID
+    let smsURL="https://api.kandy.io/v1.2/devices/smss?key=" + userAccesstoken + "&device_id=" + deviceId;
+    
+    //Constructing JSON body to send via the post request
+    let parameters: Parameters = [
+        "message":[
+            "source":"\(source)",
+            "destination":"\(destination)",
+            "message":[
+                "text":"\(message)"
+            ]
+        ]
+    ]
+    
+    var smsStatus:String="";
+    //Http Request using Alamofire Library (Swift)
+    Alamofire.request(smsURL, method:.post,parameters:parameters,encoding:JSONEncoding.default,headers:headers)
+        .responseJSON{
+            response in
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                print("Send SMS Response : \(json)")
+                smsStatus = json.stringValue
+                break
+            case .failure:
+                smsStatus = "{\"status\":\"failed\"}"
+                break
+            }
+    }
+    return smsStatus //JSON String response
+    
+    
+}
 //Check the parameters for valid strings
 func check_init_error(domain_api_key:String,domain_secret:String,user_id:String) -> Bool{
     if domain_api_key.isEmpty {return false}

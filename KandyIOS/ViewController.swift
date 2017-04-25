@@ -16,13 +16,18 @@ class ViewController: UIViewController {
         let message = userMessage.text
         messageResponse.text = message
         userMessage.resignFirstResponder()
-        let json_response = sendSMS(domain_api_key: "", domain_secret: "", user_id: "user1", source: "", destination: "", message: "Hello From Kandy")
         
+        //This is the function which needs to be called to send sms via the api 
+        //You need to include the file "KandyLib.swift" and pass valid params to the following function
+        
+        let json_response = sendSMS(domain_api_key: "Your API Key", domain_secret: "Domain Secret Token", user_id: "Your user ID", source: "Source Phone Number", destination: "Destination Phone Number", message: userMessage.text!)
+        // Then click on run
+        //The below terminal window shows the output response
         print("Message Sent \(message)")
         print("Response Json : \(json_response)")
         
         messageResponse.text = "You've just sent : \(message)"
-        getDeviceId(user_access_token:"")
+        
         
     }
     
